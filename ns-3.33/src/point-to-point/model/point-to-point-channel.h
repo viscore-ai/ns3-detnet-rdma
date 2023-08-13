@@ -145,7 +145,8 @@ protected:
      Ptr<NetDevice> txDevice, Ptr<NetDevice> rxDevice,
      Time duration, Time lastBitTime);
                     
-private:
+// private:
+protected:
   /** Each point to point link has exactly two net devices. */
   static const std::size_t N_DEVICES = 2;
 

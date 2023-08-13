@@ -102,7 +102,7 @@ QbbChannel::TransmitStart (
 
   Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
                                   txTime + m_delay, &QbbNetDevice::Receive,
-                                  m_link[wire].m_dst, p);
+                                  DynamicCast<QbbNetDevice>(m_link[wire].m_dst), p);
 
   // Call the tx anim callback on the net device
   m_txrxQbb (p, src, m_link[wire].m_dst, txTime, txTime + m_delay);
@@ -126,14 +126,14 @@ QbbChannel::GetQbbDevice (uint32_t i) const
 {
   NS_LOG_FUNCTION_NOARGS ();
   NS_ASSERT (i < 2);
-  return m_link[i].m_src;
+  return DynamicCast<QbbNetDevice>(m_link[i].m_src);
 }
 
 Ptr<NetDevice>
 QbbChannel::GetDevice (uint32_t i) const
 {
   NS_LOG_FUNCTION_NOARGS ();
-  return GetQbbDevice (i);
+  return PointToPointChannel::GetDevice (i);
 }
 
 Time
@@ -145,13 +145,13 @@ QbbChannel::GetDelay (void) const
 Ptr<QbbNetDevice>
 QbbChannel::GetSource (uint32_t i) const
 {
-  return m_link[i].m_src;
+  return  DynamicCast<QbbNetDevice>(m_link[i].m_src);
 }
 
 Ptr<QbbNetDevice>
 QbbChannel::GetDestination (uint32_t i) const
 {
-  return m_link[i].m_dst;
+  return  DynamicCast<QbbNetDevice>(m_link[i].m_dst);
 }
 
 bool

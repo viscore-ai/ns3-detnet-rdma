@@ -365,9 +365,6 @@ public:
    */
   virtual bool SupportsSendFrom (void) const = 0;
 
-  // ns3-hpcc INT
-  // For switch
-  virtual bool SwitchSend (uint32_t qIndex, Ptr<Packet> packet, CustomHeader &ch);
 };
 
 } // namespace ns3

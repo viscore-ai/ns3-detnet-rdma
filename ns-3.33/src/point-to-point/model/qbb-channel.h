@@ -145,24 +145,6 @@ private:
                  Time               // Last bit receive time (relative to now)
                  > m_txrxQbb;
 
-  enum WireState
-  {
-    INITIALIZING,
-    IDLE,
-    TRANSMITTING,
-    PROPAGATING
-  };
-
-  class Link
-  {
-public:
-    Link() : m_state (INITIALIZING), m_src (0), m_dst (0) {}
-    WireState                  m_state;
-    Ptr<QbbNetDevice> m_src;
-    Ptr<QbbNetDevice> m_dst;
-  };
-
-  Link    m_link[N_DEVICES];
 };
 
 } // namespace ns3

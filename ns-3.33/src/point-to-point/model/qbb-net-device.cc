@@ -74,7 +74,8 @@ namespace ns3 {
 		m_rrlast = 0;
 		m_qlast = 0;
 		m_ackQ = CreateObject<DropTailQueue<Packet> >();
-		m_ackQ->SetAttribute("MaxBytes", UintegerValue(0xffffffff)); // queue limit is on a higher level, not here
+		// ziven: TODO fix this, 'MaxBytes' comes from ns-3.18
+		// m_ackQ->SetAttribute("MaxBytes", UintegerValue(0xffffffff)); // queue limit is on a higher level, not here
 	}
 
 	Ptr<Packet> RdmaEgressQueue::DequeueQindex(int qIndex){
