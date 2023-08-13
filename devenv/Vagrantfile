@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   config.disksize.size = "40GB"
 
   # -----------------------------------
-  # 1. VM for anbox-foilplanet develepment
+  # 1. VM for DetNet RDMA develepment
   # -----------------------------------
   config.vm.define "detnet_rdma" do |detnet_rdma|
     detnet_rdma.vm.box = "ubuntu/focal64"
@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
       vb.memory = 4096
       vb.default_nic_type = "virtio"
-      vb.customize ['modifyvm', :id, '--description', 'VM for AI NVR devel']
+      vb.customize ['modifyvm', :id, '--description', 'VM for DetNet-RDMA devel']
       vb.customize ['modifyvm', :id, '--nictype1', 'virtio']
 
       # Add a second disk (maximum 100G) for temporay output and data

@@ -8,7 +8,7 @@ RDMA and Congestion Control simulation based on [ns3-hpcc](https://github.com/al
 
 - Upgrades NS-3 from version 3.18 to 3.33 ([release notes](https://www.nsnam.org/releases/ns-3-33/))
 - Use Python 3.0+
-- Support recent version of gcc/g++ (other than gcc-5), had tested in ubuntu 20.04.6 LTS (setup scripts are in `devenv/ubuntu20/`)
+- Support latest version of gcc/g++ (other than gcc-5), had tested in ubuntu 20.04.6 LTS (setup scripts are in `devenv/ubuntu20/`)
 
 ## DetNET simulation
 

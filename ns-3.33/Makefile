@@ -1,4 +1,8 @@
 # Makefile wrapper for waf
+#
+.PHONY : all clean build 
+
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 all:
 	./waf
@@ -11,6 +15,7 @@ build:
 	./waf build
 
 install:
+	# ./waf install --destdir=$(ROOT_DIR)/dist
 	./waf install
 
 clean:
