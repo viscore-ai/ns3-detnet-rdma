@@ -40,7 +40,7 @@
 using namespace ns3;
 using namespace std;
 
-NS_LOG_COMPONENT_DEFINE("GENERIC_SIMULATION");
+NS_LOG_COMPONENT_DEFINE("CongestionControlSimulator");
 
 uint32_t cc_mode = 1;
 bool enable_qcn = true, use_dynamic_pfc_threshold = true;

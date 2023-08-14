@@ -11,6 +11,9 @@ all:
 configure:
 	./waf configure --enable-mpi --enable-examples --enable-tests
 
+configure-release:
+	./waf configure -d release --enable-mpi --enable-static
+
 build:
 	./waf build
 

@@ -14,6 +14,6 @@ echo "-- Config file is \"$CONF\""
 echo "-- Runing ns3::sim-cc ..."
 # $NS3_SRC/waf --run "scratch/sim-cc $CONF "
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$NS3_LIB
-export NS_LOG=GENERIC_SIMULATION=$LOG_LEV
+export NS_LOG=CongestionControlSimulator=$LOG_LEV
 # gdb --args $NS3_BLD/scratch/sim-cc $CONF
 $NS3_BLD/scratch/sim-cc $CONF
