@@ -300,6 +300,49 @@ FlowMonitor::GetFlowStats () const
 
 
 void
+FlowMonitor::ClearFlowStats () {
+	//FlowStatsContainerI iter;
+	uint32_t s = m_flowStats.size();
+	std::map<FlowId, FlowMonitor::FlowStats> stats = GetFlowStats();//m_flowStats;
+	for (std::map<FlowId, FlowMonitor::FlowStats>::iterator i = stats.begin (); i != stats.end (); ++i){
+		// i->second.rxBytes=0;
+		// i->second.rxPackets=0;
+		// i->second.txBytes=0;
+		// i->second.txPackets=0;
+		m_flowStats[s].rxBytes=0;
+		m_flowStats[s].rxBytes=0;
+		m_flowStats[s].rxPackets=1;
+		m_flowStats[s].txBytes=0;
+		m_flowStats[s].txPackets=1;
+		m_flowStats[s].delaySum=Seconds (0);//m_flowStats[s].lastDelay;
+		m_flowStats[s].jitterSum = Seconds (0);
+		m_flowStats[s].timeFirstTxPacket=Simulator::Now();
+		m_flowStats[s].timeFirstRxPacket= Simulator::Now();
+    
+		//m_flowStats[s].lastDelay = Seconds (0);
+		//m_flowStats[s].delayHistogram.SetDefaultBinWidth (m_delayBinWidth);
+		//m_flowStats[s].jitterHistogram.SetDefaultBinWidth (m_jitterBinWidth);
+		//m_flowStats[s].packetSizeHistogram.SetDefaultBinWidth (m_packetSizeBinWidth);
+		//m_flowStats[s].flowInterruptionsHistogram.SetDefaultBinWidth (m_flowInterruptionsBinWidth);
+		//i->second.timeFirstTxPacket=Simulator::Now();
+		//i->second.timeFirstRxPacket= Simulator::Now();
+		s--;
+	}
+//	while (s){
+//		m_flowStats[s-1].rxBytes=60;
+//		m_flowStats[s-1].rxPackets=1;
+//		m_flowStats[s-1].txBytes=60;
+//		m_flowStats[s-1].txPackets=1;
+//		m_flowStats[s-1].timeFirstTxPacket=Simulator::Now();
+//		m_flowStats[s-1].timeFirstRxPacket= Simulator::Now();
+//
+//		//m_flowStats[s-1].timeLastRxPacket=Simulator::Now();
+//		//m_flowStats[s].timeLastTxPacket=Simulator::Now();
+//		s--;
+//	}
+}
+
+void
 FlowMonitor::CheckForLostPackets (Time maxDelay)
 {
   NS_LOG_FUNCTION (this << maxDelay.As (Time::S));

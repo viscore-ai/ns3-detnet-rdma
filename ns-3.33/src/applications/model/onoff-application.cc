@@ -99,6 +99,10 @@ OnOffApplication::GetTypeId (void)
                    BooleanValue (false),
                    MakeBooleanAccessor (&OnOffApplication::m_enableSeqTsSizeHeader),
                    MakeBooleanChecker ())
+    .AddAttribute ("Buffer", "The actual data contained in the packet",
+                   StringValue("1000Kbps D"),
+                   MakeStringAccessor (&OnOffApplication::buffer_data),
+                   MakeStringChecker())
     .AddTraceSource ("Tx", "A new packet is created and is sent",
                      MakeTraceSourceAccessor (&OnOffApplication::m_txTrace),
                      "ns3::Packet::TracedCallback")
@@ -334,14 +338,20 @@ void OnOffApplication::SendPacket ()
       header.SetSeq (m_seq++);
       header.SetSize (m_pktSize);
       NS_ABORT_IF (m_pktSize < header.GetSerializedSize ());
-      packet = Create<Packet> (m_pktSize - header.GetSerializedSize ());
+      // ns3-detnet
+      // packet = Create<Packet> (m_pktSize - header.GetSerializedSize ());
+      auto pbuf = reinterpret_cast<const uint8_t *>(buffer_data.c_str());
+      packet = Create<Packet> (pbuf, m_pktSize - header.GetSerializedSize ());
       // Trace before adding header, for consistency with PacketSink
       m_txTraceWithSeqTsSize (packet, from, to, header);
       packet->AddHeader (header);
     }
   else
     {
-      packet = Create<Packet> (m_pktSize);
+      // ns3-detnet
+      // packet = Create<Packet> (m_pktSize);
+      auto pbuf = reinterpret_cast<const uint8_t *>(buffer_data.c_str());
+      packet = Create<Packet> (pbuf, m_pktSize);
     }
 
   int actual = m_socket->Send (packet);

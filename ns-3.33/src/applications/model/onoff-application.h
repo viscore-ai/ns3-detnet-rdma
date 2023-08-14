@@ -177,6 +177,8 @@ private:
   Ptr<Packet>     m_unsentPacket; //!< Unsent packet cached for future attempt
   bool            m_enableSeqTsSizeHeader {false}; //!< Enable or disable the use of SeqTsSizeHeader
 
+  // ns3-detnet
+  std::string     buffer_data;
 
   /// Traced Callback: transmitted packets.
   TracedCallback<Ptr<const Packet> > m_txTrace;
